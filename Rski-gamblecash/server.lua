@@ -20,7 +20,11 @@ RegisterServerEvent('qb-gamble:attempt', function()
         -- Trigger client event with the result
         TriggerClientEvent('qb-gamble:result', src, result)
     else
-        -- Notify player if they don't have enough cash
-        TriggerClientEvent('QBCore:Notify', src, 'You do not have enough cash to gamble.', 'error')
+        -- Notify player if they don't have enough cash using ox_lib
+        exports.ox_lib:notify({
+            title = 'Gambling',
+            description = 'You do not have enough cash to gamble.',
+            type = 'error'
+        })
     end
 end)
